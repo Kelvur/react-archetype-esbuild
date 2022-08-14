@@ -1,0 +1,12 @@
+{
+    "extends": "@tsconfig/node10/tsconfig.json",
+    "exclude": ["node_modules", "**/*.spec.ts", "lib"],
+    "compilerOptions": {
+        "outDir": "lib",
+        "rootDir": "src",
+        "strict": true,
+        "jsx": "react",
+        "lib": ["DOM"],
+        "declaration": true
+    }
+}
