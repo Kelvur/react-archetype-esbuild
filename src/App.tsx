@@ -1,12 +1,22 @@
 // Core
 import React from 'react';
+// Local Components
+import List from './components/List';
 // Styles
 import './App.css'
 
 
 function App(){
     return (
-        <h1 className='ui-red'>Hello, world!</h1>
+        <div>
+            <h1 className="ui-red">Hello, world!</h1>
+            <List value={[
+                {value: 'one', name: 'One'},
+                {value: 'two', name: 'Two'},
+                {value: 'three', name: 'Three'},
+            ]}
+            />
+        </div>
     )
 }
 
