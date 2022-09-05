@@ -1,9 +1,9 @@
 // Core
 import React from 'react';
 // Local Components
-import List from './components/List';
+import List from './00-components/List';
 // Styles
-import './App.css'
+import './App.css';
 
 
 function App(){
@@ -17,7 +17,7 @@ function App(){
             ]}
             />
         </div>
-    )
+    );
 }
 
-export default App
+export default App;
