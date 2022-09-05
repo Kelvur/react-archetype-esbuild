@@ -1,5 +1,5 @@
 // Types
-import { ServiceCallMethod, ServiceCallConfig } from './api.d'
+import { ServiceCallMethod, ServiceCallConfig } from './api.d';
 
 
 const COMMON_HEADERS = {
@@ -10,7 +10,7 @@ const DEFAULT_FETCH_CONFIG = {
     headers: COMMON_HEADERS,
 };
 
-export function serviceCall(url: string, config: ServiceCallConfig = { method: ServiceCallMethod.Get }): Promise<Response> {
+export const serviceCallInversionOfControl = (fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>) => (url: string, config: ServiceCallConfig = { method: ServiceCallMethod.Get }): Promise<T> => {
     let urlResult = url;
     // Replace all the "{urlParams}" in the URL
     // Example:
@@ -40,8 +40,10 @@ export function serviceCall(url: string, config: ServiceCallConfig = { method: S
         ...DEFAULT_FETCH_CONFIG,
         ...config,
         ...(config.body ? { body: JSON.stringify(config.body) } : {}),
-    }).then(response => response.json());
-}
+    }).then((response: Response) => response.json());
+};
+
+export const serviceCall = serviceCallInversionOfControl(window.fetch);
 
 export function get(url: string, config: ServiceCallConfig): Promise<Response>{
     return serviceCall(url, { ...config, method: ServiceCallMethod.Get });
