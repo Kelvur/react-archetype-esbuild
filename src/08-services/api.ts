@@ -10,7 +10,7 @@ const DEFAULT_FETCH_CONFIG = {
     headers: COMMON_HEADERS,
 };
 
-export const serviceCallInversionOfControl = (fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>) => (url: string, config: ServiceCallConfig = { method: ServiceCallMethod.Get }): Promise<Response> => {
+export const serviceCallInversionOfControl = (fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>) => (url: string, config: ServiceCallConfig = { method: ServiceCallMethod.Get }): Promise<T> => {
     let urlResult = url;
     // Replace all the "{urlParams}" in the URL
     // Example:
