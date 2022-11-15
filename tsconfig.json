@@ -2,7 +2,8 @@
     "extends": "@tsconfig/node10/tsconfig.json",
     "exclude": ["node_modules", "dist"],
     "compilerOptions": {
-        "rootDir": "src",
+        "rootDir": ".",
+        "outDir": "dist",
         "strict": true,
         "jsx": "react",
         "lib": ["DOM"],
