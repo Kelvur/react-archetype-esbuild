@@ -4,7 +4,6 @@ interface JestConfig {
     testEnvironment: string,
 }
 
-
 const config: JestConfig = {
     transform: {
         '^.+\\.tsx?$': 'esbuild-jest',
