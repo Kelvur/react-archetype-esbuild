@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# The purpose of the script is to checks if the code is valid by the Typescript
+# compiler so not invalid Typescript code is commited
+
+node ./node_modules/.bin/tsc --noEmit
