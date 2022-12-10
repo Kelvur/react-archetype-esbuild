@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "node build.js"
+    "build": "node build.js",
+    "watch": "WATCH=true npm run build",
+    "server": "SERVER=true npm run build"
   },
   "keywords": [],
   "author": "",
