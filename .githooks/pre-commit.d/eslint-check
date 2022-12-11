@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# The purpose of the script is to checks if the code is correctly formatted by the
+# eslint especification
+
+node ./node_modules/.bin/eslint . -c .eslintrc
