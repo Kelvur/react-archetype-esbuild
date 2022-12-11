@@ -29,6 +29,19 @@
         "comma-spacing": "error",
         "block-spacing": "error",
         "comma-dangle": ["error", "always-multiline"],
-        "@typescript-eslint/no-empty-function": "off"
+        "@typescript-eslint/no-empty-function": "off",
+        "key-spacing": [
+            "error", {
+                "singleLine": {
+                    "beforeColon": false,
+                    "afterColon": true
+                },
+                "multiLine": {
+                    "beforeColon": false,
+                    "afterColon": true,
+                    "align": "colon"
+                }
+            }
+        ]
     }
 }

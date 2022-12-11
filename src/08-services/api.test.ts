@@ -15,7 +15,7 @@ describe('fetch api wrapper', () => {
             expect.any(URL),
             {
                 headers: { 'Content-Type': 'application/json; charset=utf-8' },
-                method: 'GET',
+                method : 'GET',
             }
         );
     });
