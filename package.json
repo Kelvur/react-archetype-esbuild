@@ -7,7 +7,9 @@
     "test": "jest",
     "build": "node build.js",
     "watch": "WATCH=true npm run build",
-    "server": "SERVER=true npm run build"
+    "start": "concurrently -n esbuild,http-server \"npm run server\" \"npm run server:public\"",
+    "server": "SERVER=true npm run build",
+    "server:public": "npx http-server -p 3000 public"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +22,7 @@
     "@types/react-dom": "18.0.6",
     "@typescript-eslint/eslint-plugin": "5.33.0",
     "@typescript-eslint/parser": "5.33.0",
+    "concurrently": "7.6.0",
     "esbuild": "0.14.48",
     "esbuild-jest": "0.5.0",
     "eslint": "8.22.0",
