@@ -17,9 +17,9 @@ export const serviceCallInversionOfControl = (fetch: (input: URL | RequestInfo, 
     // URL = /books/{country}/{zipcode} urlParams = {country: 'esp', zipcode: '11035', witcher: 'Geralt'}
     // Results in /books/esp/11035
     if (typeof config.urlParams === 'object'){
-        const urlParams: Record<string, string> = config.urlParams;
-        urlResult = Object.keys(urlParams).reduce(
-            (prev: string, key: string) => prev.replace(`{${key}}`, urlParams[key]),
+        const urlParams = config.urlParams;
+        Object.keys(urlParams).forEach(
+            (key: string) => urlResult = urlResult.replace(`{${key}}`, urlParams[key]),
         );
     }
     // Put all the params in the URL
