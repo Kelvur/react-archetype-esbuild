@@ -1,5 +1,5 @@
 // Service
-import { serviceCallInversionOfControl } from './api';
+import { serviceCallInversionOfControl, ServiceCallMethod } from './api';
 
 
 describe('fetch api wrapper', () => {
@@ -8,7 +8,7 @@ describe('fetch api wrapper', () => {
         const mockFetch = jest.fn(() => Promise.resolve({ json: () => Promise.resolve('success') } as Response));
         const serviceCall = serviceCallInversionOfControl(mockFetch);
 
-        await serviceCall('http:www.example.com/api/getTitles');
+        await serviceCall('http://www.example.com/api/titles');
 
         expect(mockFetch).toBeCalledTimes(1);
         expect(mockFetch).toBeCalledWith(
@@ -16,6 +16,27 @@ describe('fetch api wrapper', () => {
             {
                 headers: { 'Content-Type': 'application/json; charset=utf-8' },
                 method : 'GET',
+            }
+        );
+    });
+
+    test('when passed urlParams in the config the url bracket values as "{year}" are replaced by the values in urlParams', async () => {
+        const mockFetch = jest.fn((url: URL | RequestInfo) => {
+            expect(url.toString()).toBe('http://www.example.com/api/titles/esp/year/1998');
+            return Promise.resolve({ json: () => Promise.resolve('success') } as Response);
+        });
+        const serviceCall = serviceCallInversionOfControl(mockFetch);
+        const urlParams = { 'country_code': 'esp', 'year': '1998', 'unused_url_param': 'foobar' };
+
+        await serviceCall('http://www.example.com/api/titles/{country_code}/year/{year}', { method: ServiceCallMethod.Get, urlParams });
+
+        expect(mockFetch).toBeCalledTimes(1);
+        expect(mockFetch).toBeCalledWith(
+            expect.any(URL),
+            {
+                headers: { 'Content-Type': 'application/json; charset=utf-8' },
+                method : 'GET',
+                urlParams,
             }
         );
     });
