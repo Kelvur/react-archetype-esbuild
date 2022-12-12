@@ -60,3 +60,5 @@ export function put<Type>(url: string, config: ServiceCallConfig): Promise<Type>
 export function remove<Type>(url: string, config: ServiceCallConfig): Promise<Type>{ // Delete, but delete is a reserved keyword
     return serviceCall(url, { ...config, method: ServiceCallMethod.Delete });
 }
+
+export { ServiceCallMethod };
