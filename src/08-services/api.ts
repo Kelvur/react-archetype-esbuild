@@ -10,7 +10,7 @@ const DEFAULT_FETCH_CONFIG = {
     headers: COMMON_HEADERS,
 };
 
-export const serviceCallInversionOfControl = (fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>) => <Type>(url: string, config: ServiceCallConfig = { method: ServiceCallMethod.Get }): Promise<Type> => {
+export const serviceCallInversionOfControl = (fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>) => <T>(url: string, config: ServiceCallConfig = { method: ServiceCallMethod.Get }): Promise<T> => {
     let urlResult = url;
     // Replace all the "{urlParams}" in the URL
     // Example:
@@ -45,19 +45,19 @@ export const serviceCallInversionOfControl = (fetch: (input: URL | RequestInfo, 
 
 export const serviceCall = serviceCallInversionOfControl(window.fetch);
 
-export function get<Type>(url: string, config: ServiceCallConfig): Promise<Type>{
+export function get<T>(url: string, config: ServiceCallConfig): Promise<T>{
     return serviceCall(url, { ...config, method: ServiceCallMethod.Get });
 }
-export function post<Type>(url: string, config: ServiceCallConfig): Promise<Type>{
+export function post<T>(url: string, config: ServiceCallConfig): Promise<T>{
     return serviceCall(url, { ...config, method: ServiceCallMethod.Post });
 }
-export function patch<Type>(url: string, config: ServiceCallConfig): Promise<Type>{
+export function patch<T>(url: string, config: ServiceCallConfig): Promise<T>{
     return serviceCall(url, { ...config, method: ServiceCallMethod.Patch });
 }
-export function put<Type>(url: string, config: ServiceCallConfig): Promise<Type>{
+export function put<T>(url: string, config: ServiceCallConfig): Promise<T>{
     return serviceCall(url, { ...config, method: ServiceCallMethod.Put });
 }
-export function remove<Type>(url: string, config: ServiceCallConfig): Promise<Type>{ // Delete, but delete is a reserved keyword
+export function remove<T>(url: string, config: ServiceCallConfig): Promise<T>{ // Delete, but delete is a reserved keyword
     return serviceCall(url, { ...config, method: ServiceCallMethod.Delete });
 }
 
