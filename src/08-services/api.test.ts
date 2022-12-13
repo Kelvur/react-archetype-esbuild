@@ -41,4 +41,22 @@ describe('fetch api wrapper', () => {
         );
     });
 
+    test('if the url passed as parameter don\'t contains the location this it\'s appended to the start', async () => {
+        const mockFetch = jest.fn((url: URL | RequestInfo) => {
+            expect(url.toString()).toBe('http://localhost/api/titles');
+            return Promise.resolve({ json: () => Promise.resolve('success') } as Response);
+        });
+        const serviceCall = serviceCallInversionOfControl(mockFetch);
+
+        await serviceCall('/api/titles');
+
+        expect(mockFetch).toBeCalledTimes(1);
+        expect(mockFetch).toBeCalledWith(
+            expect.any(URL),
+            {
+                headers: { 'Content-Type': 'application/json; charset=utf-8' },
+                method : 'GET',
+            }
+        );
+    });
 });
