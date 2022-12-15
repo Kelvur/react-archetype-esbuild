@@ -33,8 +33,8 @@ export const serviceCallInversionOfControl = (fetch: (input: URL | RequestInfo, 
         objUrl = new URL(urlResult);
     }
     if (typeof config.params === 'object'){
-        const params: Record<string, string> = config.params;
-        Object.keys(params).forEach(key => objUrl.searchParams.append(key, params[key]));
+        const params = config.params;
+        Object.keys(params).forEach(key => objUrl.searchParams.append(key, params[key].toString()));
     }
     return fetch(objUrl, {
         ...DEFAULT_FETCH_CONFIG,

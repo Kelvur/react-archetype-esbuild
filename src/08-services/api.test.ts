@@ -59,4 +59,26 @@ describe('fetch api wrapper', () => {
             }
         );
     });
+
+    test('when passed params in the config the url it\'s completed with them', async () => {
+        const mockFetch = jest.fn((url: URL | RequestInfo) => {
+            console.log(url.toString());
+            expect(url.toString()).toBe('http://www.example.com/api/titles?query=Homero&limit=10&bounds=20%2C50');
+            return Promise.resolve({ json: () => Promise.resolve('success') } as Response);
+        });
+        const serviceCall = serviceCallInversionOfControl(mockFetch);
+        const params = { query: 'Homero', limit: 10, bounds: ['20', 50] };
+
+        await serviceCall('http://www.example.com/api/titles', { method: ServiceCallMethod.Get, params });
+
+        expect(mockFetch).toBeCalledTimes(1);
+        expect(mockFetch).toBeCalledWith(
+            expect.any(URL),
+            {
+                headers: { 'Content-Type': 'application/json; charset=utf-8' },
+                method : 'GET',
+                params,
+            }
+        );
+    });
 });
