@@ -1,14 +1,14 @@
+import type { Config } from 'jest';
 
-interface JestConfig {
-    transform: Record<string, string>,
-    testEnvironment: string,
-}
 
-const config: JestConfig = {
+const config: Config = {
     transform: {
         '^.+\\.tsx?$': 'esbuild-jest',
     },
-    testEnvironment: 'jsdom',
+    testEnvironment           : 'jsdom',
+    coveragePathIgnorePatterns: [
+        'index.ts',
+    ],
 };
 
 export default config;
