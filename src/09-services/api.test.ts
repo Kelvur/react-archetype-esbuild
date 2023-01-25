@@ -41,7 +41,7 @@ describe('fetch api wrapper', () => {
         );
     });
 
-    test('if the url passed as parameter don\'t contains the location this it\'s appended to the start', async () => {
+    test('if the url passed as parameter don\'t contains the URL location this it\'s appended to the start', async () => {
         const mockFetch = jest.fn((url: URL | RequestInfo) => {
             expect(url.toString()).toBe('http://localhost/api/titles');
             return Promise.resolve({ json: () => Promise.resolve('success') } as Response);
@@ -60,7 +60,7 @@ describe('fetch api wrapper', () => {
         );
     });
 
-    test('when passed params in the config the url it\'s completed with them', async () => {
+    test('when params are passed in the config the url it\'s completed with them', async () => {
         const mockFetch = jest.fn((url: URL | RequestInfo) => {
             console.log(url.toString());
             expect(url.toString()).toBe('http://www.example.com/api/titles?query=Homero&limit=10&bounds=20%2C50');
