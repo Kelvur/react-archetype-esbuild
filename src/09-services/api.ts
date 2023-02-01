@@ -46,19 +46,19 @@ export const serviceCallInversionOfControl = (fetch: (input: URL | RequestInfo, 
 export const serviceCall = serviceCallInversionOfControl(window.fetch);
 
 export function get<T>(url: string, config: ServiceCallConfig): Promise<T>{
-    return serviceCall(url, { ...config, method: ServiceCallMethod.Get });
+    return serviceCall<T>(url, { ...config, method: ServiceCallMethod.Get });
 }
 export function post<T>(url: string, config: ServiceCallConfig): Promise<T>{
-    return serviceCall(url, { ...config, method: ServiceCallMethod.Post });
+    return serviceCall<T>(url, { ...config, method: ServiceCallMethod.Post });
 }
 export function patch<T>(url: string, config: ServiceCallConfig): Promise<T>{
-    return serviceCall(url, { ...config, method: ServiceCallMethod.Patch });
+    return serviceCall<T>(url, { ...config, method: ServiceCallMethod.Patch });
 }
 export function put<T>(url: string, config: ServiceCallConfig): Promise<T>{
-    return serviceCall(url, { ...config, method: ServiceCallMethod.Put });
+    return serviceCall<T>(url, { ...config, method: ServiceCallMethod.Put });
 }
 export function remove<T>(url: string, config: ServiceCallConfig): Promise<T>{ // Delete, but delete is a reserved keyword
-    return serviceCall(url, { ...config, method: ServiceCallMethod.Delete });
+    return serviceCall<T>(url, { ...config, method: ServiceCallMethod.Delete });
 }
 
 export { ServiceCallMethod };
