@@ -45,18 +45,18 @@ export const serviceCallInversionOfControl = (fetch: (input: URL | RequestInfo, 
 
 export const serviceCall = serviceCallInversionOfControl(window.fetch);
 
-export function get<T>(url: string, config: ServiceCallConfig): Promise<T>{
+export function get<T>(url: string, config?: ServiceCallConfig): Promise<T>{
     return serviceCall<T>(url, { ...config, method: 'GET' });
 }
-export function post<T>(url: string, config: ServiceCallConfig): Promise<T>{
+export function post<T>(url: string, config?: ServiceCallConfig): Promise<T>{
     return serviceCall<T>(url, { ...config, method: 'POST' });
 }
-export function patch<T>(url: string, config: ServiceCallConfig): Promise<T>{
+export function patch<T>(url: string, config?: ServiceCallConfig): Promise<T>{
     return serviceCall<T>(url, { ...config, method: 'PATCH' });
 }
-export function put<T>(url: string, config: ServiceCallConfig): Promise<T>{
+export function put<T>(url: string, config?: ServiceCallConfig): Promise<T>{
     return serviceCall<T>(url, { ...config, method: 'PUT' });
 }
-export function remove<T>(url: string, config: ServiceCallConfig): Promise<T>{ // Delete, but delete it's a reserved keyword
+export function remove<T>(url: string, config?: ServiceCallConfig): Promise<T>{ // Delete, but delete it's a reserved keyword
     return serviceCall<T>(url, { ...config, method: 'DELETE' });
 }
