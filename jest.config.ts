@@ -3,7 +3,7 @@ import type { Config } from 'jest';
 
 const config: Config = {
     transform: {
-        '^.+\\.tsx?$': 'esbuild-jest',
+        '^.+\\.tsx?$': 'ts-jest',
     },
     testEnvironment           : 'jsdom',
     coveragePathIgnorePatterns: [
