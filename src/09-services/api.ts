@@ -1,5 +1,5 @@
 // Types
-import { ServiceCallMethod, ServiceCallConfig } from './api.d';
+import { ServiceCallConfig } from './api.d';
 
 
 const COMMON_HEADERS = {
@@ -10,7 +10,7 @@ const DEFAULT_FETCH_CONFIG = {
     headers: COMMON_HEADERS,
 };
 
-export const serviceCallInversionOfControl = (fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>) => <T>(url: string, config: ServiceCallConfig = { method: ServiceCallMethod.Get }): Promise<T> => {
+export const serviceCallInversionOfControl = (fetch: (input: URL | RequestInfo, init?: RequestInit | undefined) => Promise<Response>) => <T>(url: string, config: ServiceCallConfig = { method: 'GET' }): Promise<T> => {
     let urlResult = url;
     // Replace all the "{urlParams}" in the URL
     // Example:
@@ -46,19 +46,17 @@ export const serviceCallInversionOfControl = (fetch: (input: URL | RequestInfo, 
 export const serviceCall = serviceCallInversionOfControl(window.fetch);
 
 export function get<T>(url: string, config: ServiceCallConfig): Promise<T>{
-    return serviceCall<T>(url, { ...config, method: ServiceCallMethod.Get });
+    return serviceCall<T>(url, { ...config, method: 'GET' });
 }
 export function post<T>(url: string, config: ServiceCallConfig): Promise<T>{
-    return serviceCall<T>(url, { ...config, method: ServiceCallMethod.Post });
+    return serviceCall<T>(url, { ...config, method: 'POST' });
 }
 export function patch<T>(url: string, config: ServiceCallConfig): Promise<T>{
-    return serviceCall<T>(url, { ...config, method: ServiceCallMethod.Patch });
+    return serviceCall<T>(url, { ...config, method: 'PATCH' });
 }
 export function put<T>(url: string, config: ServiceCallConfig): Promise<T>{
-    return serviceCall<T>(url, { ...config, method: ServiceCallMethod.Put });
+    return serviceCall<T>(url, { ...config, method: 'PUT' });
 }
-export function remove<T>(url: string, config: ServiceCallConfig): Promise<T>{ // Delete, but delete is a reserved keyword
-    return serviceCall<T>(url, { ...config, method: ServiceCallMethod.Delete });
+export function remove<T>(url: string, config: ServiceCallConfig): Promise<T>{ // Delete, but delete it's a reserved keyword
+    return serviceCall<T>(url, { ...config, method: 'DELETE' });
 }
-
-export { ServiceCallMethod };
